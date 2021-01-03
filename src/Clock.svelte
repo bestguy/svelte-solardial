@@ -27,26 +27,55 @@
           r={99}
           stroke="currentColor"
           stroke-width={2}
-          fill="white"
+          fill="hsla(211,50%,20%,.75)"
         />
-        <line
-          x1={0}
-          y1={20}
-          x2={0}
-          y2={-60}
-          stroke-width={6}
-          stroke="currentColor"
-          transform={`rotate(${hour * 30})`}
-        />
-        <line
-          x1={0}
-          y1={20}
-          x2={0}
-          y2={-88}
-          stroke-width={3}
-          stroke="currentColor"
-          transform={`rotate(${minute * 6})`}
-        />
+        <g transform={`rotate(${hour * 30})`}>
+          <circle
+            cx={0}
+            cy={0}
+            r={4}
+            stroke="currentColor"
+            fill="currentColor"
+          />
+          <line
+            x1={0}
+            y1={0}
+            x2={0}
+            y2={-15}
+            stroke-linecap="round"
+            stroke-width={4}
+            stroke="currentColor"
+          />
+          <line
+            x1={0}
+            y1={-15}
+            x2={0}
+            y2={-60}
+            stroke-linecap="round"
+            stroke-width={8}
+            stroke="currentColor"
+          />
+        </g>
+        <g transform={`rotate(${minute * 6})`}>
+          <line
+            x1={0}
+            y1={0}
+            x2={0}
+            y2={-15}
+            stroke-linecap="round"
+            stroke-width={4}
+            stroke="currentColor"
+          />
+          <line
+            x1={0}
+            y1={-15}
+            x2={0}
+            y2={-88}
+            stroke-linecap="round"
+            stroke-width={8}
+            stroke="currentColor"
+          />
+        </g>
         <line
           x1={0}
           y1={20}
