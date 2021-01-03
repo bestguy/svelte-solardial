@@ -17,6 +17,14 @@
   let dayLength = 1;
   let sunriseAngle = 0;
   let sunsetAngle = 0;
+  let solarNoonAngle = 0;
+  let nadirAngle = 0;
+  let night = 0;
+  let nightEnd = 0;
+  let dusk = 0;
+  let dawn = 0;
+  let nauticalDawn = 0;
+  let nauticalDusk = 0;
 
   $: hourAngle = (now.getHours() + now.getMinutes() / 60) * 15 + 90;
   $: {
@@ -27,6 +35,14 @@
     dayLength = differenceInSeconds(endOfDay(now), midnight);
     sunriseAngle = differenceInSeconds(midnight, sunrise) / dayLength * 360;
     sunsetAngle = differenceInSeconds(midnight, sunset) / dayLength * 360;
+    solarNoonAngle = differenceInSeconds(midnight, times.solarNoon) / dayLength * 360;
+    nadirAngle = differenceInSeconds(midnight, times.nadir) / dayLength * 360;
+    night = differenceInSeconds(midnight, times.night) / dayLength * 360;
+    nightEnd = differenceInSeconds(midnight, times.nightEnd) / dayLength * 360;
+    dusk = differenceInSeconds(midnight, times.dusk) / dayLength * 360;
+    dawn = differenceInSeconds(midnight, times.dawn) / dayLength * 360;
+    nauticalDusk = differenceInSeconds(midnight, times.nauticalDusk) / dayLength * 360;
+    nauticalDawn = differenceInSeconds(midnight, times.nauticalDawn) / dayLength * 360;
   }
   
   onMount(() => {
@@ -49,7 +65,48 @@
       fill="rgb(6,23,57)"
       opacity={0.5}
     />
-    <circle cx={0} cy={0} r={67} fill="none" stroke="currentColor" opacity={.5} />
+    <path
+      d={arc({
+        x: 0,
+        y: 0,
+        R: 99, 
+        start: 180 - dusk,
+        end: 180 - dawn
+      })}
+      fill="rgb(6,23,57)"
+      opacity={0.5}
+    />
+    <path
+      d={arc({
+        x: 0,
+        y: 0,
+        R: 99, 
+        start: 180 - nauticalDusk,
+        end: 180 - nauticalDawn
+      })}
+      fill="rgb(6,23,57)"
+      opacity={0.5}
+    />
+    <path
+      d={arc({
+        x: 0,
+        y: 0,
+        R: 99, 
+        start: 180 - night,
+        end: 180 - nightEnd
+      })}
+      fill="rgb(6,23,57)"
+      opacity={0.5}
+    />
+    <g opacity={.5}>
+      <circle cx={0} cy={0} r={67} fill="none" stroke="currentColor" />
+      <g transform={`rotate(${solarNoonAngle})`}>
+        <circle cx={0} cy={67} r={2} fill="currentColor" />
+      </g>
+      <g transform={`rotate(${nadirAngle})`}>
+        <circle cx={0} cy={67} r={2} fill="currentColor" />
+      </g>
+    </g>
     {#each range(144) as minute}
       <line
         x1={93}
