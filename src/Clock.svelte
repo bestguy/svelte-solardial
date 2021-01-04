@@ -43,7 +43,7 @@
             x2={0}
             y2={-15}
             stroke-linecap="round"
-            stroke-width={4}
+            stroke-width={3}
             stroke="currentColor"
           />
           <line
@@ -63,7 +63,7 @@
             x2={0}
             y2={-15}
             stroke-linecap="round"
-            stroke-width={4}
+            stroke-width={3}
             stroke="currentColor"
           />
           <line
