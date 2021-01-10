@@ -9,6 +9,7 @@
 
   export let lat = 0;
   export let lon = 0;
+  export let size = 400;
 
   let interval;
   let now = new Date();
@@ -47,7 +48,7 @@
   onDestroy(() => clearInterval(interval));
 </script>
 
-<svg width={400} height={400} viewBox="0 0 200 200" style="color: white;">
+<svg width={size} height={size} viewBox="0 0 200 200" style="color: white;">
   <g transform="translate(100, 100)">
     <circle cx={0} cy={0} r={99} fill="hsl(211,63%,72%)" stroke="black" />
     <path
